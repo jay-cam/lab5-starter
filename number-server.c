@@ -10,8 +10,9 @@ void handle_404(int client_sock, char *path)  {
 
     char response_buff[BUFFER_SIZE];
     snprintf(response_buff, BUFFER_SIZE, "Error 404:\r\nUnrecognized path \"%s\"\r\n", path);
+    write(client_sock, HTTP_404_NOT_FOUND, strlen(HTTP_404_NOT_FOUND));
+    write(client_sock, response_buff, strlen(response_buff));
     // snprintf includes a null-terminator
-
     // TODO: send response back to client?
 }
 
